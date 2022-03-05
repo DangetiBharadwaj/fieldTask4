@@ -23,9 +23,19 @@ import kotlinx.coroutines.launch
 import org.odk.collect.android.activities.viewmodels.SplashScreenViewModel
 import org.odk.collect.android.databinding.SplashScreenBinding
 import org.odk.collect.android.injection.DaggerUtils
+import org.odk.collect.android.projects.CurrentProjectProvider
+import org.odk.collect.android.version.VersionInformation
+import org.odk.collect.projects.Project
+import org.odk.collect.projects.ProjectsRepository
 import javax.inject.Inject
 
 class SplashScreenActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var projectsRepository: ProjectsRepository     // smap
+
+    @Inject
+    lateinit var currentProjectProvider: CurrentProjectProvider     // smap
 
     @Inject
     lateinit var splashScreenViewModelFactoryFactory: SplashScreenViewModel.Factory
@@ -46,7 +56,11 @@ class SplashScreenActivity : AppCompatActivity() {
     private fun init() {
         when {
             viewModel.shouldFirstLaunchScreenBeDisplayed -> {
-                ActivityUtils.startActivityAndCloseAllOthers(this, FirstLaunchActivity::class.java)
+                // Start Smap - Always create a default project
+                //ActivityUtils.startActivityAndCloseAllOthers(this, FirstLaunchActivity::class.java)  // smap
+                projectsRepository.save(Project.DEMO_PROJECT)
+                currentProjectProvider.setCurrentProject(Project.DEMO_PROJECT_ID)
+                // End smap
             }
             viewModel.shouldDisplaySplashScreen -> startSplashScreen()
             else -> endSplashScreen()
