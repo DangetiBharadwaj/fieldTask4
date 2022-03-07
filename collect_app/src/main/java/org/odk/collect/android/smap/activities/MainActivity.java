@@ -439,7 +439,7 @@ public class MainActivity extends CollectAbstractActivity implements TaskDownloa
                                 // Refresh the task list
                                 Intent intent = new Intent("org.smap.smapTask.refresh");
                                 LocalBroadcastManager.getInstance(Collect.getInstance()).sendBroadcast(intent);
-                                Timber.i("######## send org.smap.smapTask.refresh from smapMain");  // smap
+                                Timber.i("######## send org.smap.smapTask.refresh from MainActivity");  // smap
                             }
                         };
                 mProgressDialog.setTitle(getString(R.string.downloading_data));

@@ -64,15 +64,15 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.activities.AboutActivity;
-import org.odk.collect.android.activities.SmapMain;
+import org.odk.collect.android.smap.activities.MainActivity;
 import org.odk.collect.android.activities.viewmodels.SurveyDataViewModel;
 import org.odk.collect.android.application.Collect;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.listeners.PermissionListener;
 import org.odk.collect.android.loaders.MapLocationObserver;
-import org.odk.collect.android.loaders.PointEntry;
-import org.odk.collect.android.loaders.SurveyData;
-import org.odk.collect.android.loaders.TaskEntry;
+import org.odk.collect.android.smap.loaders.PointEntry;
+import org.odk.collect.android.smap.loaders.SurveyData;
+import org.odk.collect.android.smap.loaders.TaskEntry;
 import org.odk.collect.android.permissions.PermissionsProvider;
 import org.odk.collect.android.preferences.AdminKeys;
 import org.odk.collect.android.preferences.AdminPreferencesActivity;
@@ -233,17 +233,17 @@ public class TaskMapFragment extends Fragment
                             AdminPreferencesActivity.class);
                     startActivity(i);
                 } else {
-                    ((SmapMain) getActivity()).processAdminMenu();
+                    ((MainActivity) getActivity()).processAdminMenu();
                 }
                 return true;
             case R.id.menu_gettasks:
-                ((SmapMain) getActivity()).processGetTask(true);
+                ((MainActivity) getActivity()).processGetTask(true);
                 return true;
             case R.id.menu_history:
-                ((SmapMain) getActivity()).processHistory();
+                ((MainActivity) getActivity()).processHistory();
                 return true;
             case R.id.menu_exit:
-                ((SmapMain) getActivity()).exit();
+                ((MainActivity) getActivity()).exit();
                 return true;
 
         }
@@ -264,7 +264,7 @@ public class TaskMapFragment extends Fragment
         permissionsProvider.requestLocationPermissions((Activity) getContext(), new PermissionListener() {
             @Override
             public void granted() {
-                ((SmapMain) getActivity()).startLocationService();
+                ((MainActivity) getActivity()).startLocationService();
                 mapReadyPermissionGranted();
             }
 
@@ -362,7 +362,7 @@ public class TaskMapFragment extends Fragment
                         if (iPos != null) {
 
                             int position = iPos;
-                            List<TaskEntry> tasks = ((SmapMain) getActivity()).getTasks();
+                            List<TaskEntry> tasks = ((MainActivity) getActivity()).getTasks();
                             TaskEntry entry = tasks.get(position);
 
                             if (entry.locationTrigger != null) {
@@ -371,7 +371,7 @@ public class TaskMapFragment extends Fragment
                                         getString(R.string.smap_must_start_from_nfc),
                                         Toast.LENGTH_LONG).show();
                             } else {
-                                ((SmapMain) getActivity()).completeTask(entry, false);
+                                ((MainActivity) getActivity()).completeTask(entry, false);
                             }
 
 

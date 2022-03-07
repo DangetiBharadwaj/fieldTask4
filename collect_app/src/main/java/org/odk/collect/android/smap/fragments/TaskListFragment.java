@@ -54,7 +54,7 @@ import org.odk.collect.android.R;
 import org.odk.collect.android.activities.AboutActivity;
 import org.odk.collect.android.activities.FillBlankFormActivity;
 import org.odk.collect.android.activities.FormDownloadListActivity;
-import org.odk.collect.android.activities.SmapMain;
+import org.odk.collect.android.activities.MainActivity;
 import org.odk.collect.android.activities.SmapTaskStatusActivity;
 import org.odk.collect.android.activities.viewmodels.SurveyDataViewModel;
 import org.odk.collect.android.adapters.SortDialogAdapter;
@@ -230,7 +230,7 @@ public class TaskListFragment extends ListFragment {
     //@Override loader
     //public Loader<MapEntry> onCreateLoader(int id, Bundle args) {
     //    MapDataLoader taskLoader = new MapDataLoader(getContext());
-    //    ((SmapMain) getActivity()).setTaskLoader(taskLoader);
+    //    ((MainActivity) getActivity()).setTaskLoader(taskLoader);
     //    updateAdapter();
     //    return taskLoader;
     //}
@@ -241,12 +241,12 @@ public class TaskListFragment extends ListFragment {
      */
     //@Override   // loader
     //public void onLoadFinished(Loader<MapEntry> loader, MapEntry data) {
-    //    ((SmapMain) getActivity()).updateData(data);
+    //    ((MainActivity) getActivity()).updateData(data);
     //}
 
     //@Override   loader
     //public void onLoaderReset(Loader<MapEntry> loader) {
-    //    ((SmapMain) getActivity()).updateData(null);
+    //    ((MainActivity) getActivity()).updateData(null);
     //}
 
     protected String getSortingOrderKey() {
@@ -262,9 +262,9 @@ public class TaskListFragment extends ListFragment {
                 mAdapter.setData(null);
             }
         }
-        //((SmapMain) getActivity()).updateData(data);  Loader
+        //((MainActivity) getActivity()).updateData(data);  Loader
 
-        FragmentActivity activity = (SmapMain) getActivity();
+        FragmentActivity activity = (MainActivity) getActivity();
         if(activity != null) {
             TabLayout tabLayout = (TabLayout) (activity).findViewById(R.id.tabs);
             if(tabLayout != null) {
@@ -291,10 +291,10 @@ public class TaskListFragment extends ListFragment {
                             getString(R.string.smap_must_start_from_nfc),
                             Toast.LENGTH_LONG).show();
                 } else {
-                    ((SmapMain) getActivity()).completeTask(entry, false);
+                    ((MainActivity) getActivity()).completeTask(entry, false);
                 }
             } else {
-                ((SmapMain) getActivity()).completeForm(entry, false, null);
+                ((MainActivity) getActivity()).completeForm(entry, false, null);
             }
         }
     }
@@ -414,11 +414,11 @@ public class TaskListFragment extends ListFragment {
                             AdminPreferencesActivity.class);
                     startActivity(i);
                 } else {
-                    ((SmapMain) getActivity()).processAdminMenu();
+                    ((MainActivity) getActivity()).processAdminMenu();
                 }
                 return true;
             case R.id.menu_gettasks:
-                ((SmapMain) getActivity()).processGetTask(true);
+                ((MainActivity) getActivity()).processGetTask(true);
                 return true;
             case MENU_ENTERDATA:
                 processEnterData();
@@ -433,13 +433,13 @@ public class TaskListFragment extends ListFragment {
                 processManageFiles();
                 return true;
             case MENU_HISTORY:
-                ((SmapMain) getActivity()).processHistory();
+                ((MainActivity) getActivity()).processHistory();
                 return true;
             case R.id.menu_sort:
                 bottomSheetDialog.show();
                 return true;
             case MENU_EXIT:
-                ((SmapMain) getActivity()).exit();
+                ((MainActivity) getActivity()).exit();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -507,7 +507,7 @@ public class TaskListFragment extends ListFragment {
     }
 
     protected void updateAdapter() {
-        //MapDataLoader taskLoader =  ((SmapMain) getActivity()).getTaskLoader();
+        //MapDataLoader taskLoader =  ((MainActivity) getActivity()).getTaskLoader();
         //if(taskLoader != null) {
         //    taskLoader.updateTaskSortOrder(getSortingOrder());
         //    taskLoader.updateFilter(getFilterText());

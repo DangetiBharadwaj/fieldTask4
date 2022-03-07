@@ -278,10 +278,10 @@ public class FormListFragment extends ListFragment {
                             getString(R.string.smap_must_start_from_nfc),
                             Toast.LENGTH_LONG).show();
                 } else {
-                    ((SmapMain) getActivity()).completeTask(entry, false);
+                    ((MainActivity) getActivity()).completeTask(entry, false);
                 }
             } else {
-                ((SmapMain) getActivity()).completeForm(entry, false, null);
+                ((MainActivity) getActivity()).completeForm(entry, false, null);
             }
         }
     }
@@ -403,11 +403,11 @@ public class FormListFragment extends ListFragment {
                             AdminPreferencesActivity.class);
                     startActivity(i);
                 } else {
-                    ((SmapMain) getActivity()).processAdminMenu();
+                    ((MainActivity) getActivity()).processAdminMenu();
                 }
                 return true;
             case R.id.menu_gettasks:
-                ((SmapMain) getActivity()).processGetTask(true);
+                ((MainActivity) getActivity()).processGetTask(true);
                 return true;
             case MENU_ENTERDATA:
                 processEnterData();
@@ -422,13 +422,13 @@ public class FormListFragment extends ListFragment {
                 processManageFiles();
                 return true;
             case MENU_HISTORY:
-                ((SmapMain) getActivity()).processHistory();
+                ((MainActivity) getActivity()).processHistory();
                 return true;
             case R.id.menu_sort:
                 bottomSheetDialog.show();
                 return true;
             case MENU_EXIT:
-                ((SmapMain) getActivity()).exit();
+                ((MainActivity) getActivity()).exit();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -498,7 +498,7 @@ public class FormListFragment extends ListFragment {
 
     protected void updateAdapter() {
 
-        //MapDataLoader taskLoader =  ((SmapMain) getActivity()).getTaskLoader();   // loader
+        //MapDataLoader taskLoader =  ((MainActivity) getActivity()).getTaskLoader();   // loader
         //if(taskLoader != null) {                                                  // loader
         //    taskLoader.updateFormSortOrder(getFormSortingOrder());                // loader
         //    taskLoader.updateFilter(getFilterText());                             // loader
