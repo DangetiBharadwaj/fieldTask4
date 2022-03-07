@@ -59,7 +59,7 @@ import org.odk.collect.android.activities.FillBlankFormActivity;
 import org.odk.collect.android.activities.FormDownloadListActivity;
 import org.odk.collect.android.activities.FormMapActivity;
 import org.odk.collect.android.smap.activities.MainActivity;
-import org.odk.collect.android.activities.SmapTaskStatusActivity;
+import org.odk.collect.android.smap.activities.TaskStatusActivity;
 import org.odk.collect.android.activities.viewmodels.SurveyDataViewModel;
 import org.odk.collect.android.adapters.SortDialogAdapter;
 import org.odk.collect.android.adapters.TaskListArrayAdapter;
@@ -546,7 +546,7 @@ public class FormListFragment extends ListFragment {
         TaskEntry task = (TaskEntry) getListAdapter().getItem(position);
 
         if(task.type.equals("task")) {
-            Intent i = new Intent(getActivity(), SmapTaskStatusActivity.class);
+            Intent i = new Intent(getActivity(), TaskStatusActivity.class);
             i.putExtra("id", task.id);
 
             startActivity(i);
