@@ -60,21 +60,21 @@ import com.google.android.material.tabs.TabLayout;
 import org.odk.collect.android.R;
 import org.odk.collect.android.activities.CollectAbstractActivity;
 import org.odk.collect.android.activities.FormEntryActivity;
-import org.odk.collect.android.activities.HistoryActivity;
+import org.odk.collect.android.smap.activities.HistoryActivity;
 import org.odk.collect.android.activities.viewmodels.SurveyDataViewModel;
 import org.odk.collect.android.adapters.ViewPagerAdapter;
 import org.odk.collect.android.application.Collect;
 import org.odk.collect.android.configure.SettingsImporter;
 import org.odk.collect.android.configure.legacy.LegacySettingsFileImporter;
-import org.odk.collect.android.fragments.SmapFormListFragment;
-import org.odk.collect.android.fragments.SmapTaskListFragment;
-import org.odk.collect.android.fragments.SmapTaskMapFragment;
+import org.odk.collect.android.smap.fragments.FormListFragment;
+import org.odk.collect.android.smap.fragments.TaskListFragment;
+import org.odk.collect.android.smap.fragments.TaskMapFragment;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.listeners.InstanceUploaderListener;
 import org.odk.collect.android.listeners.NFCListener;
 import org.odk.collect.android.listeners.PermissionListener;
 import org.odk.collect.android.listeners.TaskDownloaderListener;
-import org.odk.collect.android.loaders.SurveyData;
+import org.odk.collect.android.smap.loaders.SurveyData;
 import org.odk.collect.android.smap.loaders.TaskEntry;
 import org.odk.collect.android.permissions.PermissionsProvider;
 import org.odk.collect.android.preferences.AdminKeys;
@@ -139,9 +139,9 @@ public class MainActivity extends CollectAbstractActivity implements TaskDownloa
     public static final String EXTRA_REFRESH = "refresh";
     public static final String LOGIN_STATUS = "login_status";
 
-    private SmapFormListFragment formManagerList = SmapFormListFragment.newInstance();
-    private SmapTaskListFragment taskManagerList = SmapTaskListFragment.newInstance();
-    private SmapTaskMapFragment taskManagerMap = SmapTaskMapFragment.newInstance();
+    private FormListFragment formManagerList = FormListFragment.newInstance();
+    private TaskListFragment taskManagerList = TaskListFragment.newInstance();
+    private TaskMapFragment taskManagerMap = TaskMapFragment.newInstance();
 
     private NfcAdapter mNfcAdapter;        // NFC
     public PendingIntent mNfcPendingIntent;

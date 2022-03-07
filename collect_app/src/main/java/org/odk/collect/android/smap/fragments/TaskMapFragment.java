@@ -69,7 +69,7 @@ import org.odk.collect.android.activities.viewmodels.SurveyDataViewModel;
 import org.odk.collect.android.application.Collect;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.listeners.PermissionListener;
-import org.odk.collect.android.loaders.MapLocationObserver;
+import org.odk.collect.android.smap.loaders.MapLocationObserver;
 import org.odk.collect.android.smap.loaders.PointEntry;
 import org.odk.collect.android.smap.loaders.SurveyData;
 import org.odk.collect.android.smap.loaders.TaskEntry;
