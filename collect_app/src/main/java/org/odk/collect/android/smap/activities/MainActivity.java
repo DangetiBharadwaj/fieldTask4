@@ -75,7 +75,7 @@ import org.odk.collect.android.listeners.NFCListener;
 import org.odk.collect.android.listeners.PermissionListener;
 import org.odk.collect.android.listeners.TaskDownloaderListener;
 import org.odk.collect.android.loaders.SurveyData;
-import org.odk.collect.android.loaders.TaskEntry;
+import org.odk.collect.android.smap.loaders.TaskEntry;
 import org.odk.collect.android.permissions.PermissionsProvider;
 import org.odk.collect.android.preferences.AdminKeys;
 import org.odk.collect.android.preferences.AdminPreferencesActivity;
