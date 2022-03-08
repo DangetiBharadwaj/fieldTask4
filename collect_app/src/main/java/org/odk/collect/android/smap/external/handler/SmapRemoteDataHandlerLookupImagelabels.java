@@ -1,4 +1,4 @@
 package org.odk.collect.android.smap.external.handler;
 
-public class SmapRemoteDataHandlerLookupImageLabels {
+public class SmapRemoteDataHandlerLookupImagelabels {
 }
