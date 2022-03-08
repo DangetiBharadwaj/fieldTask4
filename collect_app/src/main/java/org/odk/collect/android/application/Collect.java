@@ -37,6 +37,7 @@ import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.injection.config.AppDependencyComponent;
 import org.odk.collect.android.injection.config.DaggerAppDependencyComponent;
 import org.odk.collect.android.javarosawrapper.FormController;
+import org.odk.collect.android.smap.external.handler.SmapRemoteDataItem;
 import org.odk.collect.android.smap.loaders.GeofenceEntry;
 import org.odk.collect.android.preferences.screens.MapsPreferencesFragment;
 import org.odk.collect.android.utilities.FormsRepositoryProvider;
@@ -75,6 +76,7 @@ import java.util.ArrayList;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.util.HashMap;
 import java.util.Locale;
 
 import javax.inject.Inject;
