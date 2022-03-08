@@ -28,11 +28,11 @@ import org.javarosa.core.model.condition.EvaluationContext;
 import org.javarosa.core.model.condition.IFunctionHandler;
 import org.javarosa.xpath.expr.XPathFuncExpr;
 import org.odk.collect.android.application.Collect;
-import org.odk.collect.android.database.SqlFrag;
-import org.odk.collect.android.external.ExternalDataUtil;
-import org.odk.collect.android.external.handler.ExternalDataHandlerPull;
-import org.odk.collect.android.preferences.GeneralKeys;
-import org.odk.collect.android.tasks.SmapRemoteWebServiceTask;
+//import org.odk.collect.android.database.SqlFrag;   XXXX
+//import org.odk.collect.android.external.ExternalDataUtil;  XXXX
+//import org.odk.collect.android.external.handler.ExternalDataHandlerPull;   XXXX
+//import org.odk.collect.android.preferences.GeneralKeys;   XXXX
+//import org.odk.collect.android.tasks.SmapRemoteWebServiceTask;   XXXX
 
 import java.net.URI;
 import java.net.URL;
@@ -54,10 +54,13 @@ public class SmapRemoteDataHandlerLookup implements IFunctionHandler {
     public SmapRemoteDataHandlerLookup(String ident) {
         this.mIdent = ident;
 
+        /* XXXX
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(Collect.getInstance().getBaseContext());
         mServerUrlBase = sharedPreferences.getString(GeneralKeys.KEY_SERVER_URL, null) +
                 "/lookup/" + ident + "/";
+
+         */
     }
 
     @Override
@@ -104,12 +107,12 @@ public class SmapRemoteDataHandlerLookup implements IFunctionHandler {
         String searchType = null;  // matches || endswith || startswith || contains
 
         if(args.length == 3) {
-            filter = ExternalDataUtil.evaluateExpressionNodes(XPathFuncExpr.toString(args[2]), ec);
+            //filter = ExternalDataUtil.evaluateExpressionNodes(XPathFuncExpr.toString(args[2]), ec);  XXXX
         } else if(args.length == 4) {
             referenceColumn = XPathFuncExpr.toString(args[2]);
             referenceValue = XPathFuncExpr.toString(args[3]);
         } else if(args.length == 5) {
-            filter = ExternalDataUtil.evaluateExpressionNodes(XPathFuncExpr.toString(args[2]), ec);
+            //filter = ExternalDataUtil.evaluateExpressionNodes(XPathFuncExpr.toString(args[2]), ec);   XXXX
             fn = XPathFuncExpr.toString(args[3]).toLowerCase();
         } else if(args.length == 6) {
             referenceColumn = XPathFuncExpr.toString(args[2]);
@@ -118,11 +121,11 @@ public class SmapRemoteDataHandlerLookup implements IFunctionHandler {
             searchType = XPathFuncExpr.toString(args[5]);
         }
 
-        SqlFrag filterFrag = null;
+        //SqlFrag filterFrag = null;   XXXX
         if(filter != null && filter.length() > 0) {
-            filterFrag = new SqlFrag();
+            //filterFrag = new SqlFrag();  XXXX
             try {
-                filterFrag.addSqlFragment(filter, false, null, 0);
+                //filterFrag.addSqlFragment(filter, false, null, 0);   XXXX
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -133,9 +136,9 @@ public class SmapRemoteDataHandlerLookup implements IFunctionHandler {
 
                 // Support legacy function values
                 if(fn.equals("-1")) { // legacy
-                    fn = ExternalDataHandlerPull.FN_COUNT;
+                    //fn = ExternalDataHandlerPull.FN_COUNT;   XXXX
                 } else if(fn.equals("0")) { // legacy
-                    fn = ExternalDataHandlerPull.FN_LIST;
+                    //fn = ExternalDataHandlerPull.FN_LIST;   XXXX
                 }
 
                 /*
@@ -146,7 +149,7 @@ public class SmapRemoteDataHandlerLookup implements IFunctionHandler {
                 try {
                     index = Integer.valueOf(fn);
                     if(index > 0) {
-                        fn = ExternalDataHandlerPull.FN_INDEX;
+                        // fn = ExternalDataHandlerPull.FN_INDEX;   XXXX
                     }
                 } catch (Exception e) {
 
@@ -154,7 +157,7 @@ public class SmapRemoteDataHandlerLookup implements IFunctionHandler {
 
 
             } catch (Exception e) {
-                fn = ExternalDataHandlerPull.FN_LIST;        // default
+                //fn = ExternalDataHandlerPull.FN_LIST;        // default  XXXX
             }
 
         }
@@ -200,16 +203,17 @@ public class SmapRemoteDataHandlerLookup implements IFunctionHandler {
         if (record == null) {
             // Call a webservice to get the remote record
             app.startRemoteCall();
-            SmapRemoteWebServiceTask task = new SmapRemoteWebServiceTask();
-            task.setSmapRemoteListener(app.getFormEntryActivity());
-            task.execute(url, "0", "false", null, null, "true");
+            //SmapRemoteWebServiceTask task = new SmapRemoteWebServiceTask();  XXXX
+            // task.setSmapRemoteListener(app.getFormEntryActivity());   XXXX
+            // task.execute(url, "0", "false", null, null, "true");    XXXX
             return "";
         } else {
-            if(index == -1 || (fn != null && fn.equals(ExternalDataHandlerPull.FN_COUNT))) {
-                return ExternalDataUtil.nullSafe(record.get("_count"));
-            } else {
-                return ExternalDataUtil.nullSafe(record.get(queriedColumn));
-            }
+            //if(index == -1 || (fn != null && fn.equals(ExternalDataHandlerPull.FN_COUNT))) {  XXXX
+            //    return ExternalDataUtil.nullSafe(record.get("_count"));
+           // } else {
+           //     return ExternalDataUtil.nullSafe(record.get(queriedColumn));
+            //}
+            return "";  // XXXX
         }
     }
 }

@@ -23,7 +23,7 @@ import org.javarosa.core.model.condition.IFunctionHandler;
 import org.javarosa.xpath.expr.XPathFuncExpr;
 import org.odk.collect.android.application.Collect;
 import org.odk.collect.android.javarosawrapper.FormController;
-import org.odk.collect.android.tasks.SmapRemoteWebServiceTask;
+//import org.odk.collect.android.tasks.SmapRemoteWebServiceTask;   XXXX
 
 import java.io.File;
 import java.util.ArrayList;
@@ -90,6 +90,7 @@ public class SmapRemoteDataHandlerGetMedia implements IFunctionHandler {
             File f = new File(formController.getInstanceFile().getParent() + File.separator + mediaName);
 
             // Get the file if it does not exist and there is nothing in the cache indicating that an attempt has already been made to get it
+            /* XXXXX
             if(!f.exists() && app.getRemoteData(url) == null) {
                 app.startRemoteCall();
                 SmapRemoteWebServiceTask task = new SmapRemoteWebServiceTask();
@@ -98,6 +99,7 @@ public class SmapRemoteDataHandlerGetMedia implements IFunctionHandler {
             } else {
                 return mediaName;
             }
+            */
         }
         return "";
 

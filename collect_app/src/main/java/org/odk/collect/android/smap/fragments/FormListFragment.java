@@ -60,23 +60,23 @@ import org.odk.collect.android.activities.FormDownloadListActivity;
 import org.odk.collect.android.activities.FormMapActivity;
 import org.odk.collect.android.smap.activities.MainActivity;
 import org.odk.collect.android.smap.activities.TaskStatusActivity;
-import org.odk.collect.android.activities.viewmodels.SurveyDataViewModel;
+//import org.odk.collect.android.activities.viewmodels.SurveyDataViewModel;  XXXX
 import org.odk.collect.android.adapters.SortDialogAdapter;
-import org.odk.collect.android.adapters.TaskListArrayAdapter;
+//import org.odk.collect.android.adapters.TaskListArrayAdapter;  XXXX
 import org.odk.collect.android.application.Collect;
 import org.odk.collect.android.injection.DaggerUtils;
-import org.odk.collect.android.listeners.PermissionListener;
+//import org.odk.collect.android.listeners.PermissionListener;    XXXX
 import org.odk.collect.android.listeners.RecyclerViewClickListener;
 import org.odk.collect.android.smap.loaders.SurveyData;
 import org.odk.collect.android.smap.loaders.TaskEntry;
-import org.odk.collect.android.permissions.PermissionsProvider;
-import org.odk.collect.android.preferences.AdminKeys;
-import org.odk.collect.android.preferences.AdminPreferencesActivity;
-import org.odk.collect.android.preferences.GeneralKeys;
-import org.odk.collect.android.preferences.PreferencesActivity;
-import org.odk.collect.android.provider.FormsProviderAPI;
-import org.odk.collect.android.smap.utilities.LocationRegister;
-import org.odk.collect.android.utilities.MultiClickGuard;
+//import org.odk.collect.android.permissions.PermissionsProvider;   XXXX
+//import org.odk.collect.android.preferences.AdminKeys;   XXXX
+//import org.odk.collect.android.preferences.AdminPreferencesActivity;   XXXX
+//import org.odk.collect.android.preferences.GeneralKeys;    XXXX
+//import org.odk.collect.android.preferences.PreferencesActivity;    XXXX
+//import org.odk.collect.android.provider.FormsProviderAPI;    XXXX
+//import org.odk.collect.android.smap.utilities.LocationRegister;    XXXX
+//import org.odk.collect.android.utilities.MultiClickGuard;    XXXX
 import org.odk.collect.android.utilities.SnackbarUtils;
 import org.odk.collect.android.utilities.ThemeUtils;
 
@@ -114,12 +114,12 @@ public class FormListFragment extends ListFragment {
 
     private SharedPreferences adminPreferences;
 
-    private TaskListArrayAdapter mAdapter;
+    //private TaskListArrayAdapter mAdapter;  XXXX
 
-    SurveyDataViewModel model;
+    //SurveyDataViewModel model;   XXXX
 
     @Inject
-    PermissionsProvider permissionsProvider;
+    //PermissionsProvider permissionsProvider;  XXXX
 
     public static FormListFragment newInstance() {
         return new FormListFragment();
@@ -131,7 +131,7 @@ public class FormListFragment extends ListFragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        DaggerUtils.getComponent(context).inject(this);
+        //DaggerUtils.getComponent(context).inject(this);   XXXX
     }
 
     // this method is only called once for this fragment
@@ -157,8 +157,8 @@ public class FormListFragment extends ListFragment {
     public void onActivityCreated(Bundle b) {
         super.onActivityCreated(b);
 
-        mAdapter = new TaskListArrayAdapter(getActivity(), true);
-        setListAdapter(mAdapter);
+        //mAdapter = new TaskListArrayAdapter(getActivity(), true);   XXXX
+        //setListAdapter(mAdapter);  XXXX
 
         // Handle long item clicks
         ListView lv = getListView();
@@ -169,8 +169,8 @@ public class FormListFragment extends ListFragment {
             }
         });
 
-        adminPreferences = getActivity().getSharedPreferences(
-                AdminPreferencesActivity.ADMIN_PREFERENCES, 0);
+        //adminPreferences = getActivity().getSharedPreferences(
+        //        AdminPreferencesActivity.ADMIN_PREFERENCES, 0);   XXXX
 
     }
 
@@ -184,11 +184,14 @@ public class FormListFragment extends ListFragment {
                 R.string.smap_sort_by_project_asc, R.string.smap_sort_by_project_desc
         };
 
-        model = new ViewModelProvider(requireActivity()).get(SurveyDataViewModel.class);
+        //model = new ViewModelProvider(requireActivity()).get(SurveyDataViewModel.class);  XXXX
+        /* XXXX
         model.getSurveyData().observe(getViewLifecycleOwner(), surveyData -> {
             Timber.i("-------------------------------------- Form List Fragment got Data ");
             setData(surveyData);
         });
+
+         */
 
         super.onViewCreated(view, savedInstanceState);
     }
@@ -208,23 +211,26 @@ public class FormListFragment extends ListFragment {
     public void onResume() {
         super.onResume();
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.mipmap.ic_nav);
+        //toolbar.setNavigationIcon(R.mipmap.ic_nav);  XXXX
 
         if (bottomSheetDialog == null) {
             setupBottomSheet();
         }
 
         // Notify the user if tracking is turned on
+        /* XXXX
         if(new LocationRegister().locationEnabled()
                 && (PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(GeneralKeys.KEY_SMAP_USER_LOCATION, false)
                 || PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(GeneralKeys.KEY_SMAP_ENABLE_GEOFENCE, false))) {
             SnackbarUtils.showLongSnackbar(getActivity().findViewById(R.id.llParent), getString(R.string.smap_location_tracking));
         }
 
+         */
+
     }
 
     private void setupBottomSheet() {
-        bottomSheetDialog = new BottomSheetDialog(getActivity(), new ThemeUtils(getContext()).getBottomDialogTheme());
+        //bottomSheetDialog = new BottomSheetDialog(getActivity(), new ThemeUtils(getContext()).getBottomDialogTheme());  XXXX
         View sheetView = getActivity().getLayoutInflater().inflate(R.layout.bottom_sheet, null);
         final RecyclerView recyclerView = sheetView.findViewById(R.id.recyclerView);
 
@@ -254,6 +260,7 @@ public class FormListFragment extends ListFragment {
     }
 
     public void setData(SurveyData data) {
+        /* XXXX
         if(mAdapter != null) {
             if (data != null) {
                 mAdapter.setData(data.tasks);
@@ -261,11 +268,14 @@ public class FormListFragment extends ListFragment {
                 mAdapter.setData(null);
             }
         }
+
+         */
     }
 
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long rowId) {
+        /* XXXX
         if (MultiClickGuard.allowClick(getClass().getName())) {
             super.onListItemClick(l, v, position, rowId);
 
@@ -284,6 +294,8 @@ public class FormListFragment extends ListFragment {
                 ((MainActivity) getActivity()).completeForm(entry, false, null);
             }
         }
+
+         */
     }
 
     @Override
@@ -294,9 +306,10 @@ public class FormListFragment extends ListFragment {
         getActivity().getMenuInflater().inflate(R.menu.smap_menu, menu);
 
 
-        boolean odkMenus = PreferenceManager
+        boolean odkMenus=true; /* XXXXX = PreferenceManager
                 .getDefaultSharedPreferences(getContext())
                 .getBoolean(GeneralKeys.KEY_SMAP_ODK_STYLE_MENUS, true);
+                */
 
         if(odkMenus) {
             menu
@@ -328,9 +341,10 @@ public class FormListFragment extends ListFragment {
                 .add(0, MENU_EXIT, 0, R.string.exit)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
-        boolean adminMenu = PreferenceManager
+        boolean adminMenu = true; /* XXXXX PreferenceManager
                 .getDefaultSharedPreferences(getContext())
                 .getBoolean(GeneralKeys.KEY_SMAP_ODK_ADMIN_MENU, false);
+            */
 
         if(adminMenu) {
             menu
@@ -392,10 +406,11 @@ public class FormListFragment extends ListFragment {
                 startActivity(aboutIntent);
                 return true;
             case R.id.menu_general_preferences:
-                Intent ig = new Intent(getActivity(), PreferencesActivity.class);
-                startActivity(ig);
+                //Intent ig = new Intent(getActivity(), PreferencesActivity.class); XXXX
+                //startActivity(ig);   XXXX
                 return true;
             case R.id.menu_admin_preferences:
+                /* XXXX
                 String pw = adminPreferences.getString(
                         AdminKeys.KEY_ADMIN_PW, "");
                 if ("".equalsIgnoreCase(pw)) {
@@ -405,6 +420,7 @@ public class FormListFragment extends ListFragment {
                 } else {
                     ((MainActivity) getActivity()).processAdminMenu();
                 }
+                */
                 return true;
             case R.id.menu_gettasks:
                 ((MainActivity) getActivity()).processGetTask(true);
@@ -505,19 +521,23 @@ public class FormListFragment extends ListFragment {
         //    taskLoader.forceLoad();                                               // loader
         //}                                                                         // loader
 
+        /* XXXX
         if(model != null) {
             model.updateFormSortOrder(getFormSortingOrder());
             model.updateFilter(getFilterText());
             model.loadData();
         }
+        */
     }
 
     private void processEnterData() {
+        /* XXXX
         if (MultiClickGuard.allowClick(getClass().getName())) {
             Intent i = new Intent(getContext(),
                     FillBlankFormActivity.class);
             startActivity(i);
         }
+         */
     }
 
     // Get new forms
@@ -551,6 +571,7 @@ public class FormListFragment extends ListFragment {
 
             startActivity(i);
         } else {
+            /* XXXX
             final Uri formUri = ContentUris.withAppendedId(FormsProviderAPI.FormsColumns.CONTENT_URI, task.id);
             final Intent intent = new Intent(Intent.ACTION_EDIT, formUri, getActivity(), FormMapActivity.class);
             permissionsProvider.requestLocationPermissions(getActivity(), new PermissionListener() {
@@ -560,6 +581,7 @@ public class FormListFragment extends ListFragment {
 
                 @Override public void denied() { }
             });
+            */
         }
         return true;
     }

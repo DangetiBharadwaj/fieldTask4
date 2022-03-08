@@ -31,11 +31,11 @@ import org.javarosa.xpath.expr.XPathFuncExpr;
 import org.odk.collect.android.R;
 import org.odk.collect.android.application.Collect;
 import org.odk.collect.android.exception.ExternalDataException;
-import org.odk.collect.android.external.ExternalDataUtil;
-import org.odk.collect.android.external.ExternalSelectChoice;
-import org.odk.collect.android.preferences.GeneralKeys;
-import org.odk.collect.android.tasks.SmapRemoteWebServiceTask;
-import org.odk.collect.android.utilities.ToastUtils;
+//import org.odk.collect.android.external.ExternalDataUtil;  XXXX
+//import org.odk.collect.android.external.ExternalSelectChoice;  XXXX
+//import org.odk.collect.android.preferences.GeneralKeys;   XXXX
+//import org.odk.collect.android.tasks.SmapRemoteWebServiceTask;   XXXX
+//import org.odk.collect.android.utilities.ToastUtils;   XXXX
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -61,8 +61,8 @@ public class SmapRemoteDataHandlerSearch implements IFunctionHandler {
 
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(Collect.getInstance().getBaseContext());
-        mServerUrlBase = sharedPreferences.getString(GeneralKeys.KEY_SERVER_URL, null) +
-                "/lookup/choices/" + ident + "/";
+        //mServerUrlBase = sharedPreferences.getString(GeneralKeys.KEY_SERVER_URL, null) +
+        //        "/lookup/choices/" + ident + "/";   XXXX
 
         this.valueColumn = valueColumn;
         this.imageColumn = imageColumn;
@@ -136,7 +136,7 @@ public class SmapRemoteDataHandlerSearch implements IFunctionHandler {
                 throw new ExternalDataException(
                         Collect.getInstance().getString(R.string.smap_eval_required, searchType));
             }
-            expression = ExternalDataUtil.evaluateExpressionNodes(XPathFuncExpr.toString(args[2]), ec);
+            //expression = ExternalDataUtil.evaluateExpressionNodes(XPathFuncExpr.toString(args[2]), ec);   XXXX
         }
         if (args.length >= 4) {
             searchType = XPathFuncExpr.toString(args[1]);
@@ -210,21 +210,21 @@ public class SmapRemoteDataHandlerSearch implements IFunctionHandler {
                     if (serverChoices != null) {
                         choices = new ArrayList<SelectChoice>();
                         for (SelectChoice sc : serverChoices) {
-                            ExternalSelectChoice extChoice = new ExternalSelectChoice(sc.getLabelInnerText(), sc.getValue(), false);
-                            extChoice.setIndex(sc.getIndex());
-                            choices.add(extChoice);
+                            //ExternalSelectChoice extChoice = new ExternalSelectChoice(sc.getLabelInnerText(), sc.getValue(), false);  XXXX
+                            //extChoice.setIndex(sc.getIndex());   XXXX
+                            //choices.add(extChoice); XXXX
                         }
                     }
                 } catch (Exception e) {
-                    ToastUtils.showLongToast(data);
+                    //ToastUtils.showLongToast(data);   XXXX
                 }
             } else {
                 // Call a webservice to get the remote record
                 Timber.i("++++ Make the call");
                 app.startRemoteCall();
-                SmapRemoteWebServiceTask task = new SmapRemoteWebServiceTask();
-                task.setSmapRemoteListener(app.getFormEntryActivity());
-                task.execute(urlString, timeoutValue, "true", null, null, "true");
+                //SmapRemoteWebServiceTask task = new SmapRemoteWebServiceTask();  XXXX
+                //task.setSmapRemoteListener(app.getFormEntryActivity());  XXXX
+                //task.execute(urlString, timeoutValue, "true", null, null, "true");  XXXX
             }
         } catch (Exception e) {
             Timber.e(e);

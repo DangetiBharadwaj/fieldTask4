@@ -30,7 +30,7 @@ import androidx.multidex.MultiDex;
 import org.jetbrains.annotations.NotNull;
 import org.odk.collect.android.BuildConfig;
 import org.odk.collect.android.activities.FormEntryActivity;
-import org.odk.collect.android.amazonaws.mobile.AWSMobileClient;  // smap
+//import org.odk.collect.android.amazonaws.mobile.AWSMobileClient;  // smap  XXXX
 import org.odk.collect.android.application.initialization.ApplicationInitializer;
 import org.odk.collect.android.externaldata.ExternalDataManager;
 import org.odk.collect.android.injection.DaggerUtils;
@@ -107,8 +107,8 @@ public class Collect extends Application implements
     private FormEntryActivity formEntryActivity = null; // smap
     private HashMap<String, SmapRemoteDataItem> remoteCache = null;         // smap
     private int remoteCalls;                                                // smap
-    private Stack<FormLaunchDetail> formStack = new Stack<>();              // smap
-    private FormRestartDetails mRestartDetails;                             // smap
+    //private Stack<FormLaunchDetail> formStack = new Stack<>();              // smap XXXX
+    //private FormRestartDetails mRestartDetails;                             // smap XXXX
     private String formId;                                                  // smap
     private String searchLocalData;                                         // smap
 
@@ -274,7 +274,7 @@ public class Collect extends Application implements
     }
     // Initialise AWS
     private void initializeApplication() {
-        AWSMobileClient.initializeMobileClientIfNecessary(getApplicationContext());
+        //AWSMobileClient.initializeMobileClientIfNecessary(getApplicationContext());    XXXX
 
         // ...Put any application-specific initialization logic here...
     }
@@ -334,24 +334,30 @@ public class Collect extends Application implements
         return remoteCalls > 0;
     }
 
+    /* XXXX
     public void setFormRestartDetails(FormRestartDetails restartDetails) {
         mRestartDetails = restartDetails;
     }
+
     public FormRestartDetails getFormRestartDetails() {
         return mRestartDetails;
     }
+    */
 
     /*
      * Push a FormLaunchDetail to the stack
      * this form should then be launched by SmapMain
-     */
+     * XXXX
+     *
     public void pushToFormStack(FormLaunchDetail fld) {
         formStack.push(fld);
     }
+    */
+     */
 
     /*
      * Pop a FormLaunchDetails from the stack
-     */
+     * XXXX
     public FormLaunchDetail popFromFormStack() {
         if(formStack.empty()) {
             return null;
@@ -359,6 +365,8 @@ public class Collect extends Application implements
             return formStack.pop();
         }
     }
+    */
+
     // End Smap
 
     public AppDependencyComponent getComponent() {
